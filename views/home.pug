@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+    head
+        title Modiv - HubSpot OAuth Integration
+    body 
+        h1 Welcome to Modiv - HubSpot OAuth Integration
+        if token
+            p Hi, You're authenticated using the token: #{token}
+            p Here is Modiv Contacts: 
+            table(style='width: 50%', border='1')
+                tr 
+                    th First Name 
+                    th Last Name 
+                    th Email
+                    th Contact Owner
+                each contact in contacts 
+                    tr
+                        td #{contact.firstname}
+                        td #{contact.lastname}
+                        td #{contact.email}
+                        if contact.ownerName
+                            td #{contact.ownerName}
+                        else 
+                            td -
+
+        else 
+            p Hi Guest,
+            p Please install me #[a(href=`${authUrl}`) here] to get authenticated to access HubSpot Account.
