@@ -1,0 +1,44 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #0a303d;
+    color: #FFFFFF;
+}
+
+td, th {
+    border: 1px solid #0a303d;
+    padding: 8px 8px;
+}
+
+.link > a {
+    text-decoration: underline;
+    color: #3d8ba6;
+}
+
+.link > a:hover {
+    color: #2b3fd6;
+}
+
+.button {
+    margin-top: 24px;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    border: none;
+    width: 140px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
