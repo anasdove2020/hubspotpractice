@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+    head
+        title Modiv - User Detail
+        style 
+            include ./userdetail.css
+    body 
+        h1 Modiv - User Detail
+
+        table
+            tr 
+                th Label 
+                th Value 
+            tr 
+                td User ID
+                td #{user.id}
+            tr 
+                td First Name
+                td #{user.first_name}
+            tr 
+                td Last Name
+                td #{user.last_name}
+            tr 
+                td Email
+                td #{user.email}
+            tr 
+                td Phone Number
+                td #{user.phone}
+            tr 
+                td Date of Birth
+                td #{user.dob}
+            tr 
+                td Marital Status
+                td #{user.marital_status}
+            tr 
+                td Profession/Occupation
+                td #{user.occupation}
+            tr 
+                td Are you registered or licensed with FINRA?
+                td #{user.broker_dealer_association}
+            tr 
+                td Do you hold a series 7, series 65 or series 82 license?
+                td #{user.has_investor_license}
+            tr 
+                td Subject to Backup Tax Witholding
+                td #{user.backup_with_holding}
+
+        a(class='button' href=`/users`) Back to list

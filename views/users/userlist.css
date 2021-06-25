@@ -1,0 +1,68 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px solid #bec5d1;
+}
+
+th {
+    background-color: #0a303d;
+    color: #FFFFFF;
+}
+
+td, th {
+    padding: 8px 8px;
+    min-width: 150px;
+}
+
+.link {
+    text-align: center;
+}
+
+.link > a {
+    text-decoration: none;
+    color: #3d8ba6;
+}
+
+.link > a:hover {
+    color: #2b3fd6;
+}
+
+.button {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    border: none;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 200px;
+}
+
+.sync {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    border: none;
+    width: 100px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    margin: 0 auto;
+}

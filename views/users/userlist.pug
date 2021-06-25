@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+    head
+        title Modiv - User List
+        style 
+            include ./userlist.css
+    body
+        a(class='button' href=`/`) See HubSpot Users
+        h1 Modiv - Users List
+        table
+            tr 
+                th User ID
+                th First Name
+                th Last Name
+                th Email
+                th Profession/Occupation
+                th Action
+            each user in users 
+                tr
+                    td(class='link') #[a(href=`/users/${user.id}`) #{user.id}]
+                    td #{user.first_name}
+                    td #{user.last_name}
+                    td #{user.email}
+                    td #{user.occupation}
+                    td(class='action')
+                        form(action='/syncuser', method='POST')
+                            input(type='hidden' name='firstname' value=user.first_name)
+                            input(type='hidden' name='lastname' value=user.last_name)
+                            input(type='hidden' name='email' value=user.email)
+                            input(type='hidden' name='phone' value=user.phone)
+                            input(type='submit', value='Sync this', class='sync')
