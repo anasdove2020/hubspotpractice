@@ -1,10 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
+const bodyParser = require('body-parser');
 const path = require('path');
 const querystring = require('querystring');
 const session = require('express-session');
 const NodeCache = require('node-cache');
+const userDb = require('./db/user');
+const hubspot = require('./hubspot/hubspot');
 
 // Init App
 const app = express();
@@ -15,14 +18,16 @@ const accessTokenCache = new NodeCache();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 const REDIRECT_URI = `http://localhost:3000/oauth-callback`;
-                 
+
 const authUrl = `https://app.hubspot.com/oauth/authorize?client_id=425c4640-0ed2-4e44-9908-2eccc8b06611&redirect_uri=http://localhost:3000/oauth-callback&scope=contacts`;
 
-// TODO: Save it in database
 const refreshTokenStore = {};
 
 app.use(session({
@@ -35,8 +40,34 @@ const isAuthorized = (userId) => {
     return refreshTokenStore[userId] ? true : false;
 };
 
-// OAuth Flow
-// 1. Send user to authorization page. This kicks off initial request to OAuth Server
+const getToken = async (userId) => {
+    if (accessTokenCache.get(userId)) {
+        console.log('======= Access Token: ' + accessTokenCache.get(userId));
+        return accessTokenCache.get(userId);
+    } else {
+        try {
+            const refreshTokenProof = {
+                grant_type: 'refresh_token',
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET,
+                redirect_uri: REDIRECT_URI,
+                refresh_token: refreshTokenStore[userId]
+            };
+
+            const responseBody = await axios.post('https://api.hubapi.com/oauth/v1/token', querystring.stringify(refreshTokenProof));
+            refreshTokenStore[userId] = responseBody.data.refresh_token;
+            accessTokenCache.set(userId, responseBody.data.access_token, Math.round(responseBody.data.expires_in * 0.75));
+            // accessTokenCache.set(userId, responseBody.data.access_token, 5);
+            console.log('======= Getting Refresh Token');
+            console.log('======= New Access Token' + responseBody.data.access_token);
+            return responseBody.data.access_token;
+        } catch (e) {
+            console.error(e);
+        }
+    }
+};
+
+// ROUTING - HOME
 
 app.get('/', async (req, res) => {
     if (isAuthorized(req.sessionID)) {
@@ -46,7 +77,7 @@ app.get('/', async (req, res) => {
             'Content-Type': 'application/json'
         };
 
-        const owners = await getOwners(accessToken);
+        const owners = await hubspot.getOwners(accessToken);
 
         const contacts = `https://api.hubapi.com/contacts/v1/lists/all/contacts/all?count=40&property=lastname&property=firstname&property=email&property=hubspot_owner_id`;
         try {
@@ -92,49 +123,6 @@ app.get('/', async (req, res) => {
     }
 });
 
-const getToken = async (userId) => {
-    if (accessTokenCache.get(userId)) {
-        console.log('======= Access Token: ' + accessTokenCache.get(userId));
-        return accessTokenCache.get(userId);
-    } else {
-        try {
-            const refreshTokenProof = {
-                grant_type: 'refresh_token',
-                client_id: CLIENT_ID,
-                client_secret: CLIENT_SECRET,
-                redirect_uri: REDIRECT_URI,
-                refresh_token: refreshTokenStore[userId]
-            };
-
-            const responseBody = await axios.post('https://api.hubapi.com/oauth/v1/token', querystring.stringify(refreshTokenProof));
-            refreshTokenStore[userId] = responseBody.data.refresh_token;
-            accessTokenCache.set(userId, responseBody.data.access_token, Math.round(responseBody.data.expires_in * 0.75));
-            console.log('======= Getting Refresh Token');
-            console.log('======= New Access Token' + responseBody.data.access_token);
-            return responseBody.data.access_token;
-        } catch (e) {
-            console.error(e);
-        }
-    }
-};
-
-const getOwners = async (accessToken) => {
-    const headers = {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-    };
-    const owners = `https://api.hubapi.com/crm/v3/owners`;
-    try {
-        const resp = await axios.get(owners, { headers });
-        return resp.data.results;
-    } catch (e) {
-        console.log('Error');
-    }
-};
-
-// 2. Get temporary authorization code from OAuth Server
-// 3. Combine temporary auth code with app credentials and send back to OAuth Server
-
 app.get('/oauth-callback', async (req, res) => {
     const authCodeProof = {
         grant_type: 'authorization_code',
@@ -145,14 +133,47 @@ app.get('/oauth-callback', async (req, res) => {
     };
 
     try {
-        // 4. Get Access Tokens and Refresh Tokens
         const responseBody = await axios.post('https://api.hubapi.com/oauth/v1/token', querystring.stringify(authCodeProof));
         refreshTokenStore[req.sessionID] = responseBody.data.refresh_token;
         accessTokenCache.set(req.sessionID, responseBody.data.access_token, Math.round(responseBody.data.expires_in * 0.75));
+        // accessTokenCache.set(req.sessionID, responseBody.data.access_token, 5);
         res.redirect('/');
-    } catch(e) {
+    } catch (e) {
         console.error(e);
     }
+});
+
+app.post('/syncuser', async (req, res) => {
+    const accessToken = await getToken(req.sessionID);
+    const { firstname, lastname, email, phone } = req.body;
+    var user = {
+        company: 'test',
+        email: email,
+        firstname: firstname,
+        lastname: lastname,
+        phone: phone,
+        website: 'test',
+    }
+    await hubspot.syncUser(accessToken, user);
+    res.redirect('/');
+});
+
+app.get('/logout', (req, res) => {
+    refreshTokenStore[req.sessionID] = null;
+    res.redirect('/');
+});
+
+// ROUTING - USER
+
+app.get('/users', async (req, res) => {
+    const users = await userDb.getUsers();
+    res.render('users/userlist', { users });
+});
+
+app.get('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const user = await userDb.getUserById(id);
+    res.render('users/userdetail', { user });
 });
 
 // Start Server
