@@ -10,7 +10,7 @@ html(lang="en")
                 img(src='/assets/images/Modiv.svg' alt='Modiv' class='img-modiv')
                 img(src='/assets/images/exchange.svg' alt='exchange' class='img-exchange')
                 img(src='/assets/images/HubSpot.jpeg' alt='HubSpot' class='img-hubspot')
-            if token
+            if accessToken
                 p(class='title-success') Your Account is successfully authenticated to access HubSpot API
 
                 div(class='card-container')
@@ -47,4 +47,4 @@ html(lang="en")
             else 
                 p(class='title') Welcome to Modiv HubSpot Integration Using OAuth 2.0
                 div(class='body-getstarted')
-                    a(href=`${authUrl}` class='body-getstarted-button') Get Started
+                    a(href=`${AUTH_URL}` class='body-getstarted-button') Get Started

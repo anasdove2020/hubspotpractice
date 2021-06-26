@@ -48,7 +48,7 @@ body {
 .body-token-title {
     padding: 0;
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .body-token-box {
@@ -65,6 +65,7 @@ body {
     overflow-wrap: break-word;
     font-weight: 16px;
     line-height: 24px;
+    font-size: 14px;
 }
 
 .body-button {
