@@ -9,7 +9,7 @@ html(lang="en")
             div(class='body-image')
                 img(src='/assets/images/Modiv.svg' alt='Modiv' class='img-modiv')
                 img(src='/assets/images/exchange.svg' alt='exchange' class='img-exchange')
-                img(src='/assets/images/HubSpot.jpeg' alt='HubSpot' class='img-modiv')
+                img(src='/assets/images/HubSpot.jpeg' alt='HubSpot' class='img-hubspot')
 
             div(class='body-modiv-title') Modiv Contact List:
             div(class='body-modiv-data')
@@ -28,10 +28,10 @@ html(lang="en")
                             td #{contact.Email}
                             td(class='action')
                                 form(action='/sync-contact', method='POST')
-                                    input(type='hidden' name='firstname' value=contact.first_name)
-                                    input(type='hidden' name='lastname' value=contact.last_name)
-                                    input(type='hidden' name='email' value=contact.email)
-                                    input(type='hidden' name='phone' value=contact.phone)
+                                    input(type='hidden' name='firstname' value=contact.FirstName)
+                                    input(type='hidden' name='lastname' value=contact.LastName)
+                                    input(type='hidden' name='email' value=contact.Email)
+                                    input(type='hidden' name='phone' value=contact.Phone)
                                     input(type='submit', value='Sync', class='sync')
 
             div(class='body-button')
