@@ -160,6 +160,17 @@ app.post('/syncuser', async (req, res) => {
     res.redirect('/');
 });
 
+app.get('/token', async (req, res) => {
+    if (isAuthorized(req.sessionID)) {
+        const accessToken = await getToken(req.sessionID);
+        res.render('token/token', {
+            token: accessToken
+        });
+    } else {
+        res.render('home', { authUrl });
+    }
+});
+
 app.get('/logout', (req, res) => {
     refreshTokenStore[req.sessionID] = null;
     res.redirect('/');

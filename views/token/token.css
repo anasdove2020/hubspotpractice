@@ -1,0 +1,105 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+.body {
+    text-align: center;
+}
+
+.body-image {
+    margin-top: 8px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-modiv {
+    width: 200px;
+    height: auto;
+    margin-right: 28px;
+}
+
+.img-exchange {
+    padding-top: 14px;
+    width: 40px;
+    height: auto;
+    opacity: .8;
+}
+
+.img-hubspot {
+    padding-top: 21px;
+    width: 200px;
+    height: auto;
+    margin-left: 24px;
+}
+
+.body-token {
+    margin-top: 8px;
+    padding: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-token-title {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+}
+
+.body-token-box {
+    width: 480px;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    text-align: left;
+    padding: 16px;
+}
+
+.body-token-box > span {
+    overflow-wrap: break-word;
+    font-weight: 16px;
+    line-height: 24px;
+}
+
+.body-button {
+    padding: 16px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-button-back-link {
+    color: #007bff;
+    background-color: #FFFFFF;
+    border: 1px solid #007bff;
+    font-size: 14px;
+    border-radius: .25rem;
+    text-decoration: none;
+    display: flex;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-right: 32px;
+}
+
+.body-button-signout-link {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 14px;
+    border-radius: .25rem;
+    text-decoration: none;
+    display: flex;
+    width: 240px;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}

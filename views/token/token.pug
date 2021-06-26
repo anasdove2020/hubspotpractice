@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        title Modiv HubSpot Integration
+        style 
+            include ./token.css
+    body 
+        div(class='body')
+            div(class='body-image')
+                img(src='/assets/images/Modiv.svg' alt='Modiv' class='img-modiv')
+                img(src='/assets/images/exchange.svg' alt='exchange' class='img-exchange')
+                img(src='/assets/images/HubSpot.jpeg' alt='HubSpot' class='img-hubspot')
+
+            div(class='body-token-title') Access Token:
+            div(class='body-token')
+                div(class='body-token-box')
+                    span #{token}
+
+            div(class='body-button')
+                div(class='body-button-back')
+                    a(href=`/` class='body-button-back-link') Back
+                div(class='body-button-logout')
+                    a(href=`/logout` class='body-button-signout-link') Logout from this account
