@@ -15,38 +15,56 @@ html(lang="en")
             div(class='body-modiv-data')
                 table
                     tr 
+                        td(class='title') Personal Details
+                    tr 
                         td User ID
-                        td #{contact.id}
+                        td #{contact.UserId}
                     tr 
                         td First Name
-                        td #{contact.first_name}
+                        td #{contact.FirstName}
                     tr 
                         td Last Name
-                        td #{contact.last_name}
+                        td #{contact.LastName}
                     tr 
                         td Email
-                        td #{contact.email}
+                        td #{contact.Email}
                     tr 
                         td Phone Number
-                        td #{contact.phone}
+                        td #{contact.Phone}
                     tr 
                         td Date of Birth
-                        td #{contact.dob}
+                        td #{contact.DateOfBirth}
+                    tr 
+                        td Citizenships
+                        td #{contact.CitizenshipType}
                     tr 
                         td Marital Status
-                        td #{contact.marital_status}
+                        td #{contact.MaritalStatus}
                     tr 
                         td Profession/Occupation
-                        td #{contact.occupation}
+                        td #{contact.Occupation}
                     tr 
                         td Are you registered or licensed with FINRA?
-                        td #{contact.broker_dealer_association}
+                        td #{contact.BrokerDealerAssociation}
                     tr 
                         td Do you hold a series 7, series 65 or series 82 license?
-                        td #{contact.has_investor_license}
+                        td #{contact.HasInvestorLicense}
+                    tr 
+                        td(class='title') Resident Address
+                    tr 
+                        td Street
+                        td #{contact.ResidentAddressStreet}
+                    tr 
+                        td City
+                        td #{contact.ResidentAddressCity}
+                    tr 
+                        td(class='title') Tax Detail
                     tr 
                         td Subject to Backup Tax Witholding
-                        td #{contact.backup_with_holding}
+                        td #{contact.BackupWithHolding}
+                    tr 
+                        td Secondary Email
+                        td #{contact.SecondaryEmail}
 
             div(class='body-button')
                 div(class='body-button-back')

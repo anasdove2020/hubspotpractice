@@ -72,6 +72,11 @@ td, th {
     min-width: 150px;
 }
 
+td.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
 .link > a {
     text-decoration: underline;
     color: #007bff;
