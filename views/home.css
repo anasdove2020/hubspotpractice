@@ -153,34 +153,15 @@ body {
 }
 
 .signout-button-link {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    font-size: 14px;
+    color: #007bff;
+    background-color: #FFFFFF;
+    border: 1px solid #007bff;
+    font-size: 16px;
     border-radius: .25rem;
     text-decoration: none;
     display: flex;
-    width: 240px;
+    width: 160px;
     align-items: center;
     justify-content: center;
-    height: 60px;
-}
-
-
-
-.button {
-    margin-top: 24px;
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    border: none;
-    width: 200px;
-    cursor: pointer;
-    display: block;
-    text-decoration: none;
-    text-align: center;
+    height: 48px;
 }

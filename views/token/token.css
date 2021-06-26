@@ -92,14 +92,14 @@ body {
 }
 
 .body-button-signout-link {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    color: #007bff;
+    background-color: #FFFFFF;
+    border: 1px solid #007bff;
     font-size: 14px;
     border-radius: .25rem;
     text-decoration: none;
     display: flex;
-    width: 240px;
+    width: 100px;
     align-items: center;
     justify-content: center;
     height: 40px;
