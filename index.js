@@ -160,6 +160,59 @@ app.post('/syncuser', async (req, res) => {
     res.redirect('/');
 });
 
+app.get('/hubspotaccount', async (req, res) => {
+    if (isAuthorized(req.sessionID)) {
+        const accessToken = await getToken(req.sessionID);
+        const headers = {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+        };
+
+        const owners = await hubspot.getOwners(accessToken);
+
+        const contacts = `https://api.hubapi.com/contacts/v1/lists/all/contacts/all?count=40&property=lastname&property=firstname&property=email&property=hubspot_owner_id`;
+        try {
+            const resp = await axios.get(contacts, { headers });
+            const data = resp.data;
+
+            let contactModels = [];
+
+            data.contacts.map(async (contact) => {
+                let contactModel = {
+                    firstname: contact.properties.firstname.value,
+                    lastname: contact.properties.lastname.value,
+                    email: contact.properties.email.value
+                };
+
+                if (contact.properties.hubspot_owner_id) {
+                    contactModel.ownerId = contact.properties.hubspot_owner_id.value;
+                    const owner = owners.find(fi => fi.id === contactModel.ownerId);
+                    if (owner) {
+                        contactModel.ownerName = `${owner.firstName} ${owner.lastName}`;
+                    } else {
+                        contactModel.ownerName = null
+                    }
+                } else {
+                    contactModel.ownerId = null;
+                    contactModel.ownerName = null;
+                }
+
+                contactModels.push(contactModel);
+
+                return contact;
+            });
+
+            res.render('hubspot/hubspot', {
+                contacts: contactModels
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    } else {
+        res.render('home', { authUrl });
+    }
+});
+
 app.get('/token', async (req, res) => {
     if (isAuthorized(req.sessionID)) {
         const accessToken = await getToken(req.sessionID);

@@ -37,7 +37,14 @@ body {
     margin-left: 24px;
 }
 
-.body-token {
+.body-hubspot-title {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+
+.body-hubspot-data {
     margin-top: 8px;
     padding: 0 0 20px 0;
     display: flex;
@@ -45,26 +52,33 @@ body {
     justify-content: center;
 }
 
-.body-token-title {
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-}
-
-.body-token-box {
-    width: 480px;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
+table {
+    border-collapse: collapse;
     text-align: left;
-    padding: 16px;
 }
 
-.body-token-box > span {
-    overflow-wrap: break-word;
-    font-weight: 16px;
-    line-height: 24px;
+tr {
+    border-bottom: 1px solid rgb(243, 115, 34, .3);
+}
+
+th {
+    background-color: rgb(243, 115, 34, .8);
+    border: none;
+    color: #FFFFFF;
+}
+
+td, th {
+    padding: 8px 16px;
+    min-width: 150px;
+}
+
+.link > a {
+    text-decoration: underline;
+    color: #3d8ba6;
+}
+
+.link > a:hover {
+    color: #2b3fd6;
 }
 
 .body-button {

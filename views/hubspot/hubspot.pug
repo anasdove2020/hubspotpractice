@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+    head
+        title Modiv HubSpot Integration
+        style 
+            include ./hubspot.css
+    body 
+        div(class='body')
+            div(class='body-image')
+                img(src='/assets/images/Modiv.svg' alt='Modiv' class='img-modiv')
+                img(src='/assets/images/exchange.svg' alt='exchange' class='img-exchange')
+                img(src='/assets/images/HubSpot.jpeg' alt='HubSpot' class='img-hubspot')
+
+            div(class='body-hubspot-title') HubSpot Account List
+            div(class='body-hubspot-data')
+                table
+                    tr 
+                        th First Name 
+                        th Last Name 
+                        th Email
+                        th Contact Owner
+                    each contact in contacts 
+                        tr
+                            td #{contact.firstname}
+                            td #{contact.lastname}
+                            td #{contact.email}
+                            if contact.ownerName
+                                td #{contact.ownerName}
+                            else 
+                                td -
+
+            div(class='body-button')
+                div(class='body-button-back')
+                    a(href=`/` class='body-button-back-link') Back
+                div(class='body-button-logout')
+                    a(href=`/logout` class='body-button-signout-link') Logout from this account
