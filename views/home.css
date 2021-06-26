@@ -1,6 +1,169 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+.body {
+    text-align: center;
+}
+
+.body-image {
+    margin-top: 40px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-modiv {
+    width: 400px;
+    height: auto;
+    margin-right: 56px;
+}
+
+.img-exchange {
+    padding-top: 28px;
+    width: 80px;
+    height: auto;
+    opacity: .8;
+}
+
+.img-hubspot {
+    padding-top: 42px;
+    width: 400px;
+    height: auto;
+    margin-left: 48px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2d2926;
+}
+
+.title-success {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0e2a47;
+}
+
+.body-getstarted {
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+}
+
+.body-getstarted-button {
+    background-color: rgb(243, 115, 34);
+    color: #FFFFFF;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 16px 48px;
+    text-decoration: none;
+}
+
+.card-container {
+    padding: 16px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-body {
+    width: 280px;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin: 16px;
+}
+
+.card-image {
+    height: 180px;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-hubspotshort-card {
+    width: 100px;
+    height: auto;
+}
+
+.img-modiv-card {
+    width: 180px;
+    height: auto;
+}
+
+.img-oauth-card {
+    width: 100px;
+    height: auto;
+}
+
+.card-detail {
+    text-align: left;
+    padding: 16px;
+}
+
+.card-detail-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #212529;
+    margin: 0;
+}
+
+.card-detail-info {
+    font-size: 14px;
+    color: #212529;
+    margin: 0;
+    line-height: 24px;
+    margin-top: 8px;
+}
+
+.card-detail-button {
+    margin-top: 24px;
+}
+
+.card-detail-button-link {
+    color: #fff;
+    background-color: rgb(243, 115, 34);
+    border-color: rgb(243, 115, 34);
+    font-size: 14px;
+    border-radius: .25rem;
+    text-decoration: none;
+    display: flex;
+    width: 132px;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+}
+
+.signout {
+    padding: 16px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signout-button-link {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 14px;
+    border-radius: .25rem;
+    text-decoration: none;
+    display: flex;
+    width: 240px;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
 }
 
 table {

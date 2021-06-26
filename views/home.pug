@@ -1,33 +1,71 @@
 doctype html
 html(lang="en")
     head
-        title Modiv - HubSpot OAuth Integration
+        title Modiv HubSpot Integration
         style 
             include ./home.css
     body 
-        h1 Welcome to Modiv - HubSpot OAuth Integration
-        if token
-            a(class='button' href=`/logout`) Logout
-            p Hi, You're authenticated using the token: 
-                b #{token}
-            a(class='button' href=`/users`) See Modiv Users
-            p Here is Modiv Contacts: 
-            table
-                tr 
-                    th First Name 
-                    th Last Name 
-                    th Email
-                    th Contact Owner
-                each contact in contacts 
-                    tr
-                        td #{contact.firstname}
-                        td #{contact.lastname}
-                        td #{contact.email}
-                        if contact.ownerName
-                            td #{contact.ownerName}
-                        else 
-                            td -
+        div(class='body')
+            div(class='body-image')
+                img(src='/assets/images/Modiv.svg' alt='Modiv' class='img-modiv')
+                img(src='/assets/images/exchange.svg' alt='exchange' class='img-exchange')
+                img(src='/assets/images/HubSpot.jpeg' alt='HubSpot' class='img-hubspot')
+            if token
+                p(class='title-success') Your Account is successfully authenticated to access HubSpot API
 
-        else 
-            p Hi Guest,
-            p Please install me #[a(href=`${authUrl}`) here] to get authenticated to access HubSpot Account.
+                div(class='card-container')
+                    div(class='card-body')
+                        div(class='card-image')
+                            img(src='/assets/images/HubSpotShort.png' alt='HubSpotShort' class='img-hubspotshort-card')
+                        div(class='card-detail')
+                            p(class='card-detail-title') HubSpot Contacts
+                            p(class='card-detail-info') Retrieve all contact informations stored by HubSpot Application and detailed properties.
+                            div(class='card-detail-button')
+                                a(href=`#` class='card-detail-button-link') See Detail
+
+                    div(class='card-body')
+                        div(class='card-image')
+                            img(src='/assets/images/Modiv.svg' alt='Modiv' class='img-modiv-card')
+                        div(class='card-detail')
+                            p(class='card-detail-title') Modiv Contacts
+                            p(class='card-detail-info') Retrieve all contact informations stored by Modiv Application and detailed properties.
+                            div(class='card-detail-button')
+                                a(href=`#` class='card-detail-button-link') Sync Now
+
+                    div(class='card-body')
+                        div(class='card-image')
+                            img(src='/assets/images/OAuth.png' alt='OAuth' class='img-oauth-card')
+                        div(class='card-detail')
+                            p(class='card-detail-title') Access Token
+                            p(class='card-detail-info') Token-based authentication to allow Modiv application to access HubSpot API.
+                            div(class='card-detail-button')
+                                a(href=`#` class='card-detail-button-link') See Key
+
+                div(class='signout')
+                    div(class='signout-button')
+                        a(href=`/logout` class='signout-button-link') Logout from this account
+
+                //- p Hi, You're authenticated using the token: 
+                //-     b #{token}
+                //- a(class='button' href=`/users`) See Modiv Users
+                //- p Here is Modiv Contacts: 
+                //- table
+                //-     tr 
+                //-         th First Name 
+                //-         th Last Name 
+                //-         th Email
+                //-         th Contact Owner
+                //-     each contact in contacts 
+                //-         tr
+                //-             td #{contact.firstname}
+                //-             td #{contact.lastname}
+                //-             td #{contact.email}
+                //-             if contact.ownerName
+                //-                 td #{contact.ownerName}
+                //-             else 
+                //-                 td -
+
+            else 
+                p(class='title') Welcome to Modiv HubSpot Integration Using OAuth 2.0
+                div(class='body-getstarted')
+                    a(href=`${authUrl}` class='body-getstarted-button') Get Started
