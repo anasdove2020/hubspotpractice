@@ -1,0 +1,130 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+.body {
+    text-align: center;
+}
+
+.body-image {
+    margin-top: 8px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-modiv {
+    width: 200px;
+    height: auto;
+    margin-right: 28px;
+}
+
+.img-exchange {
+    padding-top: 14px;
+    width: 40px;
+    height: auto;
+    opacity: .8;
+}
+
+.img-hubspot {
+    padding-top: 21px;
+    width: 200px;
+    height: auto;
+    margin-left: 24px;
+}
+
+.body-modiv-title {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+
+.body-modiv-data {
+    margin-top: 8px;
+    padding: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+tr {
+    border-bottom: 1px solid rgb(243, 115, 34, .3);
+}
+
+th {
+    background-color: rgb(243, 115, 34, .8);
+    border: none;
+    color: #FFFFFF;
+}
+
+td, th {
+    padding: 8px 16px;
+    min-width: 150px;
+}
+
+.link > a {
+    text-decoration: underline;
+    color: #007bff;
+}
+
+.sync {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    border: none;
+    width: 100px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.body-button {
+    padding: 16px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-button-back-link {
+    color: rgb(243, 115, 34);
+    background-color: #FFFFFF;
+    border: 1px solid rgb(243, 115, 34);
+    font-size: 14px;
+    border-radius: .25rem;
+    text-decoration: none;
+    display: flex;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-right: 32px;
+}
+
+.body-button-signout-link {
+    color: #007bff;
+    background-color: #FFFFFF;
+    border: 1px solid #007bff;
+    font-size: 14px;
+    border-radius: .25rem;
+    text-decoration: none;
+    display: flex;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}

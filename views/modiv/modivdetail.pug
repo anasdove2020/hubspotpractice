@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+    head
+        title Modiv HubSpot Integration
+        style 
+            include ./modivdetail.css
+    body 
+        div(class='body')
+            div(class='body-image')
+                img(src='/assets/images/Modiv.svg' alt='Modiv' class='img-modiv')
+                img(src='/assets/images/exchange.svg' alt='exchange' class='img-exchange')
+                img(src='/assets/images/HubSpot.jpeg' alt='HubSpot' class='img-modiv')
+
+            div(class='body-modiv-title') Modiv Contact Detail:
+            div(class='body-modiv-data')
+                table
+                    tr 
+                        td User ID
+                        td #{contact.id}
+                    tr 
+                        td First Name
+                        td #{contact.first_name}
+                    tr 
+                        td Last Name
+                        td #{contact.last_name}
+                    tr 
+                        td Email
+                        td #{contact.email}
+                    tr 
+                        td Phone Number
+                        td #{contact.phone}
+                    tr 
+                        td Date of Birth
+                        td #{contact.dob}
+                    tr 
+                        td Marital Status
+                        td #{contact.marital_status}
+                    tr 
+                        td Profession/Occupation
+                        td #{contact.occupation}
+                    tr 
+                        td Are you registered or licensed with FINRA?
+                        td #{contact.broker_dealer_association}
+                    tr 
+                        td Do you hold a series 7, series 65 or series 82 license?
+                        td #{contact.has_investor_license}
+                    tr 
+                        td Subject to Backup Tax Witholding
+                        td #{contact.backup_with_holding}
+
+            div(class='body-button')
+                div(class='body-button-back')
+                    a(href=`/modiv-contacts` class='body-button-back-link') Back
+                div(class='body-button-logout')
+                    a(href=`/logout` class='body-button-signout-link') Logout

@@ -87,27 +87,50 @@ app.get('/oauth-callback', async (req, res) => {
     }
 });
 
-app.post('/syncuser', async (req, res) => {
-    const accessToken = await getToken(req.sessionID);
-    const { firstname, lastname, email, phone } = req.body;
-    var user = {
-        company: 'test',
-        email: email,
-        firstname: firstname,
-        lastname: lastname,
-        phone: phone,
-        website: 'test',
+app.post('/sync-contact', async (req, res) => {
+    if (isAuthorized(req.sessionID)) {
+        const accessToken = await getToken(req.sessionID);
+        const { firstname, lastname, email, phone } = req.body;
+        var contact = {
+            company: 'test',
+            email: email,
+            firstname: firstname,
+            lastname: lastname,
+            phone: phone,
+            website: 'test',
+        }
+        await hubspot.syncUser(accessToken, contact);
+        res.redirect('/hubspot-contacts');
+    } else {
+        res.render('home', { AUTH_URL });
     }
-    await hubspot.syncUser(accessToken, user);
-    res.redirect('/');
 });
 
-app.get('/hubspotaccount', async (req, res) => {
+app.get('/hubspot-contacts', async (req, res) => {
     if (isAuthorized(req.sessionID)) {
         const accessToken = await getToken(req.sessionID);
         const owners = await hubspot.getOwners(accessToken);
         const contacts = await hubspot.getContacts(accessToken, owners);
         res.render('hubspot/hubspot', { contacts });
+    } else {
+        res.render('home', { AUTH_URL });
+    }
+});
+
+app.get('/modiv-contacts', async (req, res) => {
+    if (isAuthorized(req.sessionID)) {
+        const contacts = await userDb.getUsers();
+        res.render('modiv/modivlist', { contacts });
+    } else {
+        res.render('home', { AUTH_URL });
+    }
+});
+
+app.get('/modiv-contacts/:id', async (req, res) => {
+    if (isAuthorized(req.sessionID)) {
+        const { id } = req.params;
+        const contact = await userDb.getUserById(id);
+        res.render('modiv/modivdetail', { contact });
     } else {
         res.render('home', { AUTH_URL });
     }
@@ -125,17 +148,6 @@ app.get('/token', async (req, res) => {
 app.get('/logout', (req, res) => {
     refreshTokenStore[req.sessionID] = null;
     res.redirect('/');
-});
-
-app.get('/users', async (req, res) => {
-    const users = await userDb.getUsers();
-    res.render('users/userlist', { users });
-});
-
-app.get('/users/:id', async (req, res) => {
-    const { id } = req.params;
-    const user = await userDb.getUserById(id);
-    res.render('users/userdetail', { user });
 });
 
 app.listen(3000, () => console.log(`Listening on http://localhost:3000`));
