@@ -15,7 +15,8 @@ const getUsers = async () => {
                                         US.annual_information AS "AnnualInformation",
                                         ACC.id AS "AccountId",
                                         INVQUEST.ncq2 AS "Question2", INVQUEST.ncq3 AS "Question3", INVQUEST.ncq4 AS "Question4", INVQUEST.ncq5 AS "Question5",
-                                        INVQUEST.ncq6 AS "Question6", INVQUEST.ncq7 AS "Question7", INVQUEST.ncq8 AS "Question8", INVQUEST.ncq13 AS "Question13"
+                                        INVQUEST.ncq6 AS "Question6", INVQUEST.ncq7 AS "Question7", INVQUEST.ncq8 AS "Question8", INVQUEST.ncq13 AS "Question13",
+                                        ACCREDQUEST.accreditation_status AS "AccreditationStatus"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -36,6 +37,8 @@ const getUsers = async () => {
                                             ON US.id = ACC.user_id
                                         LEFT JOIN "Investment_questionnaire" INVQUEST
                                             ON ACC.id = INVQUEST.account_id
+                                        LEFT JOIN "Accreditation_questionnaires" ACCREDQUEST
+                                            ON US.id = ACCREDQUEST.user_id
                                     ORDER BY US.Id DESC LIMIT 20;`, null);
     
     return rows;
@@ -56,7 +59,8 @@ const getUserById = async(id) => {
                                         US.annual_information AS "AnnualInformation",
                                         ACC.id AS "AccountId",
                                         INVQUEST.ncq2 AS "Question2", INVQUEST.ncq3 AS "Question3", INVQUEST.ncq4 AS "Question4", INVQUEST.ncq5 AS "Question5",
-                                        INVQUEST.ncq6 AS "Question6", INVQUEST.ncq7 AS "Question7", INVQUEST.ncq8 AS "Question8", INVQUEST.ncq13 AS "Question13"
+                                        INVQUEST.ncq6 AS "Question6", INVQUEST.ncq7 AS "Question7", INVQUEST.ncq8 AS "Question8", INVQUEST.ncq13 AS "Question13",
+                                        ACCREDQUEST.accreditation_status AS "AccreditationStatus"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -77,6 +81,8 @@ const getUserById = async(id) => {
                                             ON US.id = ACC.user_id
                                         LEFT JOIN "Investment_questionnaire" INVQUEST
                                             ON ACC.id = INVQUEST.account_id
+                                        LEFT JOIN "Accreditation_questionnaires" ACCREDQUEST
+                                            ON US.id = ACCREDQUEST.user_id
                                     WHERE US.id = $1`, [id]);
     
     let row = rows[0];
@@ -182,6 +188,28 @@ const getUserById = async(id) => {
     }
 
     row.Question8Text = question8Text;
+
+    let question13Text = '';
+    if (row.Question13 !== null) {
+        if (row.Question13) {
+            question13Text = 'True';
+        } else {
+            question13Text = 'False';
+        }
+    }
+
+    row.Question13Text = question13Text;
+
+    let accreditationStatusText = '';
+    if (row.AccreditationStatus !== null) {
+        if (row.AccreditationStatus) {
+            accreditationStatusText = 'True';
+        } else {
+            accreditationStatusText = 'False';
+        }
+    }
+
+    row.AccreditationStatusText = accreditationStatusText;
 
     return row;
 }
