@@ -11,7 +11,8 @@ const getUsers = async () => {
                                         US.employee_status_id AS "EmployeeStatusId", US.employer_name AS "EmployerName",
                                         US.employer_address_id AS "EmployerAddressId", EMPADD.street AS "EmployerAddressStreet", EMPADD.city AS "EmployerAddressCity", EMPADD.zip AS "EmployerAddressZip",
                                         EMPADD.country_id AS "EmployerAddressCountryId", EMPADDCOUNTRY.name AS "EmployerAddressCountryName",
-                                        EMPADD.state_id AS "EmployerAddressStateId", EMPADDSTATE.abbr AS "EmployerAddressStateAbbr"
+                                        EMPADD.state_id AS "EmployerAddressStateId", EMPADDSTATE.abbr AS "EmployerAddressStateAbbr",
+                                        US.annual_information AS "AnnualInformation"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -44,7 +45,8 @@ const getUserById = async(id) => {
                                         US.employee_status_id AS "EmployeeStatusId", US.employer_name AS "EmployerName",
                                         US.employer_address_id AS "EmployerAddressId", EMPADD.street AS "EmployerAddressStreet", EMPADD.city AS "EmployerAddressCity", EMPADD.zip AS "EmployerAddressZip",
                                         EMPADD.country_id AS "EmployerAddressCountryId", EMPADDCOUNTRY.name AS "EmployerAddressCountryName",
-                                        EMPADD.state_id AS "EmployerAddressStateId", EMPADDSTATE.abbr AS "EmployerAddressStateAbbr"
+                                        EMPADD.state_id AS "EmployerAddressStateId", EMPADDSTATE.abbr AS "EmployerAddressStateAbbr",
+                                        US.annual_information AS "AnnualInformation"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -63,7 +65,30 @@ const getUserById = async(id) => {
                                             ON EMPADD.state_id = EMPADDSTATE.id
                                     WHERE US.id = $1`, [id]);
     
-    return rows[0];
+    let row = rows[0];
+    let annual2019 = 0;
+    let annual2020 = 0;
+
+    if (row.AnnualInformation) {
+        if (row.AnnualInformation.income) {
+            let income = row.AnnualInformation.income;
+            let incomePropertyNames = Object.keys(income);
+            incomePropertyNames.map(incomePropertyName => {
+                if (incomePropertyName === '2019') {
+                    annual2019 = income[incomePropertyName];
+                }
+                if (incomePropertyName === '2020') {
+                    annual2020 = income[incomePropertyName];
+                }
+                return incomePropertyName;
+            });
+        }
+    }
+
+    row.AnnualInformation2019 = annual2019;
+    row.AnnualInformation2020 = annual2020;
+
+    return row;
 }
 
 module.exports = {
