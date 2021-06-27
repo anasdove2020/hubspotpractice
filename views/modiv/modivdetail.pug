@@ -64,7 +64,7 @@ html(lang="en")
                         td State
                         td #{contact.ResidentAddressStateAbbr}
                     tr 
-                        td ZIP
+                        td Zip Code
                         td #{contact.ResidentAddressZip}
                     tr 
                         td(class='title') Tax Detail
@@ -72,8 +72,46 @@ html(lang="en")
                         td Subject to Backup Tax Witholding
                         td #{contact.BackupWithHolding}
                     tr 
+                        td(class='title') Contact Information
+                    tr 
+                        td Phone Number
+                        td #{contact.Phone}
+                    tr 
                         td Secondary Email
                         td #{contact.SecondaryEmail}
+                    tr 
+                        td(class='title') Employer Details
+                    tr 
+                        td Employee Status
+                        if contact.EmployeeStatusId
+                            if contact.EmployeeStatusId === 1
+                                td Employed
+                            if contact.EmployeeStatusId === 2
+                                td Not Employed
+                            if contact.EmployeeStatusId === 3
+                                td Retired
+                            if contact.EmployeeStatusId === 4
+                                td Student
+                        else 
+                            td 
+                    tr 
+                        td Employer Name
+                        td #{contact.EmployerName}
+                    tr 
+                        td Street
+                        td #{contact.EmployerAddressStreet}
+                    tr 
+                        td City
+                        td #{contact.EmployerAddressCity}
+                    tr 
+                        td Country
+                        td #{contact.EmployerAddressCountryName}
+                    tr 
+                        td State
+                        td #{contact.EmployerAddressStateAbbr}
+                    tr 
+                        td Zip Code
+                        td #{contact.EmployerAddressZip}
 
             div(class='body-button')
                 div(class='body-button-back')

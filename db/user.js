@@ -7,7 +7,11 @@ const getUsers = async () => {
                                         US.secondary_email AS "SecondaryEmail", US.backup_with_holding AS "BackupWithHolding", US.citizenship_id AS "CitizenshipId", CTZ.type AS "CitizenshipType",
                                         US.address_id AS "AddressId", RESADD.street AS "ResidentAddressStreet", RESADD.city AS "ResidentAddressCity", RESADD.zip AS "ResidentAddressZip",
                                         RESADD.country_id AS "ResidentAddressCountryId", RESADDCOUNTRY.name AS "ResidentAddressCountryName",
-                                        RESADD.state_id AS "ResidentAddressStateId", RESADDSTATE.abbr AS "ResidentAddressStateAbbr"
+                                        RESADD.state_id AS "ResidentAddressStateId", RESADDSTATE.abbr AS "ResidentAddressStateAbbr",
+                                        US.employee_status_id AS "EmployeeStatusId", US.employer_name AS "EmployerName",
+                                        US.employer_address_id AS "EmployerAddressId", EMPADD.street AS "EmployerAddressStreet", EMPADD.city AS "EmployerAddressCity", EMPADD.zip AS "EmployerAddressZip",
+                                        EMPADD.country_id AS "EmployerAddressCountryId", EMPADDCOUNTRY.name AS "EmployerAddressCountryName",
+                                        EMPADD.state_id AS "EmployerAddressStateId", EMPADDSTATE.abbr AS "EmployerAddressStateAbbr"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -18,6 +22,12 @@ const getUsers = async () => {
                                             ON RESADD.country_id = RESADDCOUNTRY.id
                                         LEFT JOIN "States" RESADDSTATE
                                             ON RESADD.state_id = RESADDSTATE.id
+                                        LEFT JOIN "Addresses" EMPADD
+                                            ON US.employer_address_id = EMPADD.id
+                                        LEFT JOIN "Countries" EMPADDCOUNTRY
+                                            ON EMPADD.country_id = EMPADDCOUNTRY.id
+                                        LEFT JOIN "States" EMPADDSTATE
+                                            ON EMPADD.state_id = EMPADDSTATE.id
                                     ORDER BY US.Id DESC LIMIT 10;`, null);
     
     return rows;
@@ -30,7 +40,11 @@ const getUserById = async(id) => {
                                         US.secondary_email AS "SecondaryEmail", US.backup_with_holding AS "BackupWithHolding", US.citizenship_id AS "CitizenshipId", CTZ.type AS "CitizenshipType",
                                         US.address_id AS "AddressId", RESADD.street AS "ResidentAddressStreet", RESADD.city AS "ResidentAddressCity", RESADD.zip AS "ResidentAddressZip",
                                         RESADD.country_id AS "ResidentAddressCountryId", RESADDCOUNTRY.name AS "ResidentAddressCountryName",
-                                        RESADD.state_id AS "ResidentAddressStateId", RESADDSTATE.abbr AS "ResidentAddressStateAbbr"
+                                        RESADD.state_id AS "ResidentAddressStateId", RESADDSTATE.abbr AS "ResidentAddressStateAbbr",
+                                        US.employee_status_id AS "EmployeeStatusId", US.employer_name AS "EmployerName",
+                                        US.employer_address_id AS "EmployerAddressId", EMPADD.street AS "EmployerAddressStreet", EMPADD.city AS "EmployerAddressCity", EMPADD.zip AS "EmployerAddressZip",
+                                        EMPADD.country_id AS "EmployerAddressCountryId", EMPADDCOUNTRY.name AS "EmployerAddressCountryName",
+                                        EMPADD.state_id AS "EmployerAddressStateId", EMPADDSTATE.abbr AS "EmployerAddressStateAbbr"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -41,6 +55,12 @@ const getUserById = async(id) => {
                                             ON RESADD.country_id = RESADDCOUNTRY.id
                                         LEFT JOIN "States" RESADDSTATE
                                             ON RESADD.state_id = RESADDSTATE.id
+                                        LEFT JOIN "Addresses" EMPADD
+                                            ON US.employer_address_id = EMPADD.id
+                                        LEFT JOIN "Countries" EMPADDCOUNTRY
+                                            ON EMPADD.country_id = EMPADDCOUNTRY.id
+                                        LEFT JOIN "States" EMPADDSTATE
+                                            ON EMPADD.state_id = EMPADDSTATE.id
                                     WHERE US.id = $1`, [id]);
     
     return rows[0];
