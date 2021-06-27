@@ -72,6 +72,15 @@ td, th {
     min-width: 150px;
 }
 
+tr > td:first-child {
+    width: 400px;
+    padding-right: 24px;
+}
+
+tr > td:last-child {
+    width: 400px;
+}
+
 td.title {
     font-weight: bold;
     font-size: 16px;

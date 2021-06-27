@@ -83,17 +83,7 @@ html(lang="en")
                         td(class='title') Employer Details
                     tr 
                         td Employee Status
-                        if contact.EmployeeStatusId
-                            if contact.EmployeeStatusId === 1
-                                td Employed
-                            if contact.EmployeeStatusId === 2
-                                td Not Employed
-                            if contact.EmployeeStatusId === 3
-                                td Retired
-                            if contact.EmployeeStatusId === 4
-                                td Student
-                        else 
-                            td 
+                        td #{contact.EmployeeStatus}
                     tr 
                         td Employer Name
                         td #{contact.EmployerName}
@@ -118,6 +108,32 @@ html(lang="en")
                     tr 
                         td The investor has an annual gross income in 2019 of
                         td #{contact.AnnualInformation2019}
+                    tr 
+                        td(class='title') Financial Questionnaire
+                    tr 
+                        td Excluding primary residence, the Investor’s household net worth is:
+                        td #{contact.Question2}
+                    tr 
+                        td What percentage of your net worth is invested in illiquid assets? Types of illiquid assets include, but are not limited to, penny stocks, ownership interest in private companies, real estate other than your home, art, antiques, collectibles, etc.:
+                        td #{contact.Question3}
+                    tr 
+                        td What percentage of your net worth is invested in liquid assets? Types of liquid assets include, but are not limited to, cash, money-market funds, bonds, US Treasuries, ETFs, mutual funds, publicly traded REITs, etc.:
+                        td #{contact.Question4}
+                    tr 
+                        td How would you describe your knowledge of investments?
+                        td #{contact.Question5Text}
+                    tr 
+                        td How would you describe your investment objective?
+                        td #{contact.Question6Text}
+                    tr 
+                        td When do you anticipate needing liquidity from your investment?
+                        td #{contact.Question7Text}
+                    tr 
+                        td On a scale of 1 to 5, how would you rate your risk tolerance?
+                        td #{contact.Question8Text}
+                    tr 
+                        td Do you believe you have sufficient knowledge and experience in financial and business affairs to evaluate the merits and risks of an investment in our company?
+                        td #{contact.Question13}
                         
 
             div(class='body-button')
