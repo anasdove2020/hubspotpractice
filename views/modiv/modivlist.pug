@@ -16,16 +16,22 @@ html(lang="en")
                 table
                     tr 
                         th User ID
+                        th Email
                         th First Name
                         th Last Name
-                        th Email
+                        th Account ID
+                        th Reit ID
+                        th Account Type
                         th
                     each contact in contacts 
                         tr
                             td(class='link') #[a(href=`/modiv-contacts/${contact.UserId}`) #{contact.UserId}]
+                            td #{contact.Email}
                             td #{contact.FirstName}
                             td #{contact.LastName}
-                            td #{contact.Email}
+                            td #{contact.AccountId}
+                            td #{contact.InvestmentReitId}
+                            td #{contact.AccountTypeName}
                             td(class='action')
                                 form(action='/sync-contact', method='POST')
                                     input(type='hidden' name='firstname' value=contact.FirstName)

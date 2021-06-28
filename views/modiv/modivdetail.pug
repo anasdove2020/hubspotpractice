@@ -212,6 +212,34 @@ html(lang="en")
                     tr 
                         td Aggregate Investment Value
                         td <i>(sum of all account shares by reit x reit pps :  round to 2nd decimal)</i>
+                    tr 
+                        td(class='title') Account Details 
+                    tr 
+                        td Account ID
+                        td #{contact.AccountId}
+                    tr 
+                        td Investment Reit ID
+                        td #{contact.InvestmentReitId}
+                    tr 
+                        td Dividends Reinvesting
+                        td #{contact.InvestmentReinvestDividends}
+                    tr 
+                        td Investment Value/Shares
+                        td <i>(Shares x current price per share : Round 2nd decimal)</i>
+                    tr 
+                        td Shares
+                        td #{contact.InvestmentShares}
+                    tr 
+                        td(class='title') Investment Account
+                    tr 
+                        td Type
+                        td #{contact.AccountTypeName}
+                    tr 
+                        td Name
+                        td #{contact.AccountName}
+                    tr 
+                        td Email
+                        td #{contact.AccountEmail}
 
             div(class='body-button')
                 div(class='body-button-back')

@@ -21,7 +21,9 @@ const getUsers = async () => {
                                         ACCREDQUEST.q4 AS "AccreditationQuestion4", ACCREDQUEST.q5 AS "AccreditationQuestion5", ACCREDQUEST.q6 AS "AccreditationQuestion6",
                                         ACCREDQUEST.q7 AS "AccreditationQuestion7", ACCREDQUEST.q8 AS "AccreditationQuestion8", ACCREDQUEST.q9 AS "AccreditationQuestion9",
                                         ACCREDQUEST.q10 AS "AccreditationQuestion10", ACCREDQUEST.q11 AS "AccreditationQuestion11", ACCREDQUEST.q12 AS "AccreditationQuestion12",
-                                        ACCREDQUEST.q13 AS "AccreditationQuestion13", ACCREDQUEST.q14 AS "AccreditationQuestion14", ACCREDQUEST.q15 AS "AccreditationQuestion15"
+                                        ACCREDQUEST.q13 AS "AccreditationQuestion13", ACCREDQUEST.q14 AS "AccreditationQuestion14", ACCREDQUEST.q15 AS "AccreditationQuestion15",
+                                        INV.reinvest_dividends AS "InvestmentReinvestDividends", INV.reit_id AS "InvestmentReitId", INV.shares AS "InvestmentShares",
+                                        ACCTYPE.name AS "AccountTypeName", ACC.name AS "AccountName", ACC.email AS "AccountEmail"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -44,6 +46,10 @@ const getUsers = async () => {
                                             ON ACC.id = INVQUEST.account_id
                                         LEFT JOIN "Accreditation_questionnaires" ACCREDQUEST
                                             ON US.id = ACCREDQUEST.user_id
+                                        LEFT JOIN "Investments" INV
+                                            ON ACC.id = INV.account_id
+                                        LEFT JOIN "Account_types" ACCTYPE
+                                            ON ACC.account_type_id = ACCTYPE.id
                                     ORDER BY US.Id DESC LIMIT 20;`, null);
     
     return rows;
@@ -70,7 +76,9 @@ const getUserById = async(id) => {
                                         ACCREDQUEST.q4 AS "AccreditationQuestion4", ACCREDQUEST.q5 AS "AccreditationQuestion5", ACCREDQUEST.q6 AS "AccreditationQuestion6",
                                         ACCREDQUEST.q7 AS "AccreditationQuestion7", ACCREDQUEST.q8 AS "AccreditationQuestion8", ACCREDQUEST.q9 AS "AccreditationQuestion9",
                                         ACCREDQUEST.q10 AS "AccreditationQuestion10", ACCREDQUEST.q11 AS "AccreditationQuestion11", ACCREDQUEST.q12 AS "AccreditationQuestion12",
-                                        ACCREDQUEST.q13 AS "AccreditationQuestion13", ACCREDQUEST.q14 AS "AccreditationQuestion14", ACCREDQUEST.q15 AS "AccreditationQuestion15"
+                                        ACCREDQUEST.q13 AS "AccreditationQuestion13", ACCREDQUEST.q14 AS "AccreditationQuestion14", ACCREDQUEST.q15 AS "AccreditationQuestion15",
+                                        INV.reinvest_dividends AS "InvestmentReinvestDividends", INV.reit_id AS "InvestmentReitId", INV.shares AS "InvestmentShares",
+                                        ACCTYPE.name AS "AccountTypeName", ACC.name AS "AccountName", ACC.email AS "AccountEmail"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -93,6 +101,10 @@ const getUserById = async(id) => {
                                             ON ACC.id = INVQUEST.account_id
                                         LEFT JOIN "Accreditation_questionnaires" ACCREDQUEST
                                             ON US.id = ACCREDQUEST.user_id
+                                        LEFT JOIN "Investments" INV
+                                            ON ACC.id = INV.account_id
+                                        LEFT JOIN "Account_types" ACCTYPE
+                                            ON ACC.account_type_id = ACCTYPE.id
                                     WHERE US.id = $1`, [id]);
     
     let row = rows[0];
