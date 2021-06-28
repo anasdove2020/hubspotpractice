@@ -16,7 +16,12 @@ const getUsers = async () => {
                                         ACC.id AS "AccountId",
                                         INVQUEST.ncq2 AS "Question2", INVQUEST.ncq3 AS "Question3", INVQUEST.ncq4 AS "Question4", INVQUEST.ncq5 AS "Question5",
                                         INVQUEST.ncq6 AS "Question6", INVQUEST.ncq7 AS "Question7", INVQUEST.ncq8 AS "Question8", INVQUEST.ncq13 AS "Question13",
-                                        ACCREDQUEST.accreditation_status AS "AccreditationStatus"
+                                        ACCREDQUEST.accreditation_status AS "AccreditationStatus",
+                                        ACCREDQUEST.q1 AS "AccreditationQuestion1", ACCREDQUEST.q2 AS "AccreditationQuestion2", ACCREDQUEST.q3 AS "AccreditationQuestion3",
+                                        ACCREDQUEST.q4 AS "AccreditationQuestion4", ACCREDQUEST.q5 AS "AccreditationQuestion5", ACCREDQUEST.q6 AS "AccreditationQuestion6",
+                                        ACCREDQUEST.q7 AS "AccreditationQuestion7", ACCREDQUEST.q8 AS "AccreditationQuestion8", ACCREDQUEST.q9 AS "AccreditationQuestion9",
+                                        ACCREDQUEST.q10 AS "AccreditationQuestion10", ACCREDQUEST.q11 AS "AccreditationQuestion11", ACCREDQUEST.q12 AS "AccreditationQuestion12",
+                                        ACCREDQUEST.q13 AS "AccreditationQuestion13", ACCREDQUEST.q14 AS "AccreditationQuestion14", ACCREDQUEST.q15 AS "AccreditationQuestion15"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -60,7 +65,12 @@ const getUserById = async(id) => {
                                         ACC.id AS "AccountId",
                                         INVQUEST.ncq2 AS "Question2", INVQUEST.ncq3 AS "Question3", INVQUEST.ncq4 AS "Question4", INVQUEST.ncq5 AS "Question5",
                                         INVQUEST.ncq6 AS "Question6", INVQUEST.ncq7 AS "Question7", INVQUEST.ncq8 AS "Question8", INVQUEST.ncq13 AS "Question13",
-                                        ACCREDQUEST.accreditation_status AS "AccreditationStatus"
+                                        ACCREDQUEST.accreditation_status AS "AccreditationStatus",
+                                        ACCREDQUEST.q1 AS "AccreditationQuestion1", ACCREDQUEST.q2 AS "AccreditationQuestion2", ACCREDQUEST.q3 AS "AccreditationQuestion3",
+                                        ACCREDQUEST.q4 AS "AccreditationQuestion4", ACCREDQUEST.q5 AS "AccreditationQuestion5", ACCREDQUEST.q6 AS "AccreditationQuestion6",
+                                        ACCREDQUEST.q7 AS "AccreditationQuestion7", ACCREDQUEST.q8 AS "AccreditationQuestion8", ACCREDQUEST.q9 AS "AccreditationQuestion9",
+                                        ACCREDQUEST.q10 AS "AccreditationQuestion10", ACCREDQUEST.q11 AS "AccreditationQuestion11", ACCREDQUEST.q12 AS "AccreditationQuestion12",
+                                        ACCREDQUEST.q13 AS "AccreditationQuestion13", ACCREDQUEST.q14 AS "AccreditationQuestion14", ACCREDQUEST.q15 AS "AccreditationQuestion15"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
