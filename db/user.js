@@ -26,7 +26,9 @@ const getUsers = async () => {
                                         ACCTYPE.name AS "AccountTypeName", ACC.name AS "AccountName", ACC.email AS "AccountEmail",
                                         ACC.address_id AS "AccountAddressId", ACCADD.street AS "AccountAddressStreet", ACCADD.city AS "AccountAddressCity", ACCADD.zip AS "AccountAddressZip",
                                         ACCADD.country_id AS "AccountAddressCountryId", ACCADDCOUNTRY.name AS "AccountAddressCountryName",
-                                        ACCADD.state_id AS "AccountAddressStateId", ACCADDSTATE.abbr AS "AccountAddressStateAbbr"
+                                        ACCADD.state_id AS "AccountAddressStateId", ACCADDSTATE.abbr AS "AccountAddressStateAbbr",
+                                        ACC.phone AS "AccountPhone", ACC.backup_with_holding AS "AccountBackupWithHolding",
+                                        ACC.custodian_id AS "AccountCustodianId"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -90,7 +92,9 @@ const getUserById = async(id) => {
                                         ACCTYPE.name AS "AccountTypeName", ACC.name AS "AccountName", ACC.email AS "AccountEmail",
                                         ACC.address_id AS "AccountAddressId", ACCADD.street AS "AccountAddressStreet", ACCADD.city AS "AccountAddressCity", ACCADD.zip AS "AccountAddressZip",
                                         ACCADD.country_id AS "AccountAddressCountryId", ACCADDCOUNTRY.name AS "AccountAddressCountryName",
-                                        ACCADD.state_id AS "AccountAddressStateId", ACCADDSTATE.abbr AS "AccountAddressStateAbbr"
+                                        ACCADD.state_id AS "AccountAddressStateId", ACCADDSTATE.abbr AS "AccountAddressStateAbbr",
+                                        ACC.phone AS "AccountPhone", ACC.backup_with_holding AS "AccountBackupWithHolding",
+                                        ACC.custodian_id AS "AccountCustodianId"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
