@@ -23,7 +23,10 @@ const getUsers = async () => {
                                         ACCREDQUEST.q10 AS "AccreditationQuestion10", ACCREDQUEST.q11 AS "AccreditationQuestion11", ACCREDQUEST.q12 AS "AccreditationQuestion12",
                                         ACCREDQUEST.q13 AS "AccreditationQuestion13", ACCREDQUEST.q14 AS "AccreditationQuestion14", ACCREDQUEST.q15 AS "AccreditationQuestion15",
                                         INV.reinvest_dividends AS "InvestmentReinvestDividends", INV.reit_id AS "InvestmentReitId", INV.shares AS "InvestmentShares",
-                                        ACCTYPE.name AS "AccountTypeName", ACC.name AS "AccountName", ACC.email AS "AccountEmail"
+                                        ACCTYPE.name AS "AccountTypeName", ACC.name AS "AccountName", ACC.email AS "AccountEmail",
+                                        ACC.address_id AS "AccountAddressId", ACCADD.street AS "AccountAddressStreet", ACCADD.city AS "AccountAddressCity", ACCADD.zip AS "AccountAddressZip",
+                                        ACCADD.country_id AS "AccountAddressCountryId", ACCADDCOUNTRY.name AS "AccountAddressCountryName",
+                                        ACCADD.state_id AS "AccountAddressStateId", ACCADDSTATE.abbr AS "AccountAddressStateAbbr"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -50,6 +53,12 @@ const getUsers = async () => {
                                             ON ACC.id = INV.account_id
                                         LEFT JOIN "Account_types" ACCTYPE
                                             ON ACC.account_type_id = ACCTYPE.id
+                                        LEFT JOIN "Addresses" ACCADD
+                                            ON ACC.address_id = ACCADD.id
+                                        LEFT JOIN "Countries" ACCADDCOUNTRY
+                                            ON ACCADD.country_id = ACCADDCOUNTRY.id
+                                        LEFT JOIN "States" ACCADDSTATE
+                                            ON ACCADD.state_id = ACCADDSTATE.id
                                     ORDER BY US.Id DESC LIMIT 20;`, null);
     
     return rows;
@@ -78,7 +87,10 @@ const getUserById = async(id) => {
                                         ACCREDQUEST.q10 AS "AccreditationQuestion10", ACCREDQUEST.q11 AS "AccreditationQuestion11", ACCREDQUEST.q12 AS "AccreditationQuestion12",
                                         ACCREDQUEST.q13 AS "AccreditationQuestion13", ACCREDQUEST.q14 AS "AccreditationQuestion14", ACCREDQUEST.q15 AS "AccreditationQuestion15",
                                         INV.reinvest_dividends AS "InvestmentReinvestDividends", INV.reit_id AS "InvestmentReitId", INV.shares AS "InvestmentShares",
-                                        ACCTYPE.name AS "AccountTypeName", ACC.name AS "AccountName", ACC.email AS "AccountEmail"
+                                        ACCTYPE.name AS "AccountTypeName", ACC.name AS "AccountName", ACC.email AS "AccountEmail",
+                                        ACC.address_id AS "AccountAddressId", ACCADD.street AS "AccountAddressStreet", ACCADD.city AS "AccountAddressCity", ACCADD.zip AS "AccountAddressZip",
+                                        ACCADD.country_id AS "AccountAddressCountryId", ACCADDCOUNTRY.name AS "AccountAddressCountryName",
+                                        ACCADD.state_id AS "AccountAddressStateId", ACCADDSTATE.abbr AS "AccountAddressStateAbbr"
                                     FROM
                                         "Users" US
                                         LEFT JOIN "Citizenships" CTZ
@@ -105,6 +117,12 @@ const getUserById = async(id) => {
                                             ON ACC.id = INV.account_id
                                         LEFT JOIN "Account_types" ACCTYPE
                                             ON ACC.account_type_id = ACCTYPE.id
+                                        LEFT JOIN "Addresses" ACCADD
+                                            ON ACC.address_id = ACCADD.id
+                                        LEFT JOIN "Countries" ACCADDCOUNTRY
+                                            ON ACCADD.country_id = ACCADDCOUNTRY.id
+                                        LEFT JOIN "States" ACCADDSTATE
+                                            ON ACCADD.state_id = ACCADDSTATE.id
                                     WHERE US.id = $1`, [id]);
     
     let row = rows[0];
