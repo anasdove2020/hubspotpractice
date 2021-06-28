@@ -221,6 +221,171 @@ const getUserById = async(id) => {
 
     row.AccreditationStatusText = accreditationStatusText;
 
+    let accreditationQuestion1Text = '';
+    if (row.AccreditationQuestion1) {
+        if (row.AccreditationQuestion1.toLowerCase().indexOf('trust') > -1) {
+            accreditationQuestion1Text = 'Trust';
+        } else if (row.AccreditationQuestion1.toLowerCase().indexOf('individual') > -1) {
+            accreditationQuestion1Text = 'Individual';
+        }
+    }
+
+    row.AccreditationQuestion1Text = accreditationQuestion1Text;
+
+    let accreditationQuestion2Text = '';
+    if (row.AccreditationQuestion2 !== null) {
+        if (row.AccreditationQuestion2) {
+            accreditationQuestion2Text = 'True';
+        } else {
+            accreditationQuestion2Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion2Text = accreditationQuestion2Text;
+
+    let accreditationQuestion3Text = '';
+    if (row.AccreditationQuestion3 !== null) {
+        if (row.AccreditationQuestion3) {
+            accreditationQuestion3Text = 'True';
+        } else {
+            accreditationQuestion3Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion3Text = accreditationQuestion3Text;
+
+    let accreditationQuestion4Text = '';
+    if (row.AccreditationQuestion4 !== null) {
+        if (row.AccreditationQuestion4) {
+            accreditationQuestion4Text = 'True';
+        } else {
+            accreditationQuestion4Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion4Text = accreditationQuestion4Text;
+
+    let accreditationQuestion5Text = '';
+    if (row.AccreditationQuestion5 !== null) {
+        if (row.AccreditationQuestion5) {
+            accreditationQuestion5Text = 'True';
+        } else {
+            accreditationQuestion5Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion5Text = accreditationQuestion5Text;
+
+    let accreditationQuestion6Text = '';
+    if (row.AccreditationQuestion6 !== null) {
+        if (row.AccreditationQuestion6) {
+            accreditationQuestion6Text = 'True';
+        } else {
+            accreditationQuestion6Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion6Text = accreditationQuestion6Text;
+
+    let accreditationQuestion7Text = '';
+    if (row.AccreditationQuestion7 !== null) {
+        if (row.AccreditationQuestion7) {
+            accreditationQuestion7Text = 'True';
+        } else {
+            accreditationQuestion7Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion7Text = accreditationQuestion7Text;
+
+    let accreditationQuestion8Text = '';
+    if (row.AccreditationQuestion8 !== null) {
+        if (row.AccreditationQuestion8) {
+            accreditationQuestion8Text = 'True';
+        } else {
+            accreditationQuestion8Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion8Text = accreditationQuestion8Text;
+
+    let accreditationQuestion9Text = '';
+    if (row.AccreditationQuestion9 !== null) {
+        if (row.AccreditationQuestion9) {
+            accreditationQuestion9Text = 'True';
+        } else {
+            accreditationQuestion9Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion9Text = accreditationQuestion9Text;
+
+    let accreditationQuestion10Text = '';
+    if (row.AccreditationQuestion10 !== null) {
+        if (row.AccreditationQuestion10) {
+            accreditationQuestion10Text = 'True';
+        } else {
+            accreditationQuestion10Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion10Text = accreditationQuestion10Text;
+
+    let accreditationQuestion11Text = '';
+    if (row.AccreditationQuestion11 !== null) {
+        if (row.AccreditationQuestion11) {
+            accreditationQuestion11Text = 'True';
+        } else {
+            accreditationQuestion11Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion11Text = accreditationQuestion11Text;
+
+    let accreditationQuestion12Text = '';
+    if (row.AccreditationQuestion12 !== null) {
+        if (row.AccreditationQuestion12) {
+            accreditationQuestion12Text = 'True';
+        } else {
+            accreditationQuestion12Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion12Text = accreditationQuestion12Text;
+
+    let accreditationQuestion13Text = '';
+    if (row.AccreditationQuestion13 !== null) {
+        if (row.AccreditationQuestion13) {
+            accreditationQuestion13Text = 'True';
+        } else {
+            accreditationQuestion13Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion13Text = accreditationQuestion13Text;
+
+    let accreditationQuestion14Text = '';
+    if (row.AccreditationQuestion14 !== null) {
+        if (row.AccreditationQuestion14) {
+            accreditationQuestion14Text = 'True';
+        } else {
+            accreditationQuestion14Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion14Text = accreditationQuestion14Text;
+
+    let accreditationQuestion15Text = '';
+    if (row.AccreditationQuestion15 !== null) {
+        if (row.AccreditationQuestion15) {
+            accreditationQuestion15Text = 'True';
+        } else {
+            accreditationQuestion15Text = 'False';
+        }
+    }
+
+    row.AccreditationQuestion15Text = accreditationQuestion15Text;
+
     return row;
 }
 
