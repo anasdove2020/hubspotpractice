@@ -63,6 +63,7 @@ const syncUser = async (accessToken, user) => {
                 firstname: user.firstname,
                 lastname: user.lastname,
                 phone: user.phone,
+                users_phone: user.phone,
                 website: user.website,
                 hubspot_owner_id: 85931368 // TODO: HARDCODED. NEED TO GET USER LOGIN ID.
             }
